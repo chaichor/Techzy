@@ -3,11 +3,13 @@ import usersController from "../controllers/usersController.js";
 
 const router = express.Router();
 
-router.route("/")
+router
+    .route("/")
     .get(usersController.getUsers)
-    .post(usersController.getUsers);
+    .post(usersController.insertUsers);
 
-router.route("/:id")
+router
+    .route("/:id")
     .put(usersController.updateUsers)
     .delete(usersController.deleteUsers);
 

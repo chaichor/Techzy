@@ -9,31 +9,31 @@
 
 import { Schema, model } from "mongoose";
 
-const productsSchema = new Schema ({
+const usersSchema = new Schema ({
     firstName: {
         type: String,
-        require: true
+        required: true
     },
     lastName: {
         type: String,
-        require: true,
+        required: true,
     },
     birthDate: {
         type: Date,
-        require: true
+        required: true
     },
     email: {
         type: String,
-        require: true
+        required: true
     },
     password: {
         type: String,
-        require: true,
+        required: true,
         minLength: 7
     },
     phoneNumber: {
         type: String,
-        require: true,
+        required: true,
         minLength: 8
     }
 }, {
@@ -41,4 +41,4 @@ const productsSchema = new Schema ({
     strict: false
 })
 
-export default model("Users", productsSchema);
+export default model("Users", usersSchema);
