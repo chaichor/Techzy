@@ -1,5 +1,6 @@
 // Importo todo lo de la libreria express
 import express from "express";
+import usersRoutes from "./src/routes/users.js";
 
 // Creo una constante que es igual a la libreria que importè y la ejecuta
 const app = express();
@@ -8,6 +9,7 @@ const app = express();
 app.use(express.json());
 
 // Definir la ruta
+app.use("/api/users", usersRoutes);
 
 
 // Exporto la constante para poder usar express en otros lados
