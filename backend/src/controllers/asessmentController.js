@@ -4,7 +4,7 @@ import assessmentModel from "../models/Assessment.js";
 //select 
 
 assessmentController.getAssessment = async (req, res)=>{
-    const assessment = await assessmentModel.find().populate("idProduct}").populate("idUser")
+    const assessment = await assessmentModel.find().populate("idProduct").populate("idUser")
     res.json(assessment)
 }
 

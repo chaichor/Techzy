@@ -10,11 +10,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-<<<<<<< HEAD
+
     "dotenv": "^16.4.7",
-=======
     "backend": "file:",
->>>>>>> 166f851baeae718b1e319ca2cf035f5efcacc69d
     "express": "^4.21.2",
     "mongodb": "^6.15.0",
     "mongoose": "^8.12.1"

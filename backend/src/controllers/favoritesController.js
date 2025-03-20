@@ -3,7 +3,7 @@ import favoritesModel from "../models/Favorites.js";
 
 //select 
 favoritesController.getFavorites = async (req, res)=>{
-    const assessment = await favoritesModel.find().populate("idProduct}").populate("idUser")
+    const assessment = await favoritesModel.find().populate("idProduct").populate("idUser")
     res.json(assessment)
 }
 

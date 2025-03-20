@@ -4,11 +4,11 @@ IdProduct
 score
 */
 
-import {Shcema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const assessmentSchema = new Schema({
     IdUser:{
-    type: Shcema.types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "Users",
     required: true 
     },
