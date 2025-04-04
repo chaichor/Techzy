@@ -1,10 +1,13 @@
 import React from 'react';
+import HeaderHome from '../../components/Home/headerHome'; 
 
 const Home = () => {
     return (
-        <>
-        <h1>ola casita</h1>
-        </>
+        <div className="bg-[#100537] min-h-screen">
+            <div className="pt-24">
+                <HeaderHome /> 
+            </div>
+        </div>
     );
 };
 
