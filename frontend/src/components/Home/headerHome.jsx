@@ -9,9 +9,9 @@ const HeaderHome = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 items-center w-full">
                 {/* Sección Izquierda: Logo y Frase centrados */}
                 <div className="flex flex-col items-center text-center px-4 z-10">
-                    <img src="/techzy.svg" alt="Techzy Logo" className="h-20 mb-4" />
-                    <p className="text-lg md:text-xl lg:text-2xl font-semibold">
-                        “Para teclas, calidad y precisión en cada pulsación”
+                    <img src="/logo_header.png" alt="Techzy Logo" className="h-60 mb-10" />
+                    <p className="text-lg md:text-xl lg:text-2xl font-light">
+                        “Para teclas, calidad y <br />precisión en cada pulsación”
                     </p>
                 </div>
 
@@ -23,7 +23,7 @@ const HeaderHome = () => {
                         transition={{ duration: 1.5 }}
                         src="/header-image.png"
                         alt="Teclados Mecánicos"
-                        className="md:absolute right-0 md:top-1/2 md:-translate-y-1/2 w-full max-w-none md:w-[700px] h-auto object-contain"
+                        className="md:absolute right-0 md:top-1/2 md:-translate-y-1/2 w-full max-w-none md:w-[1000px] h-auto object-contain"
                     />
                 </div>
             </div>
