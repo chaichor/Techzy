@@ -42,13 +42,13 @@ const Nav = () => {
                 {/* Icons */}
                 <div className="flex items-center space-x-6">
                     <Link to="/profile">
-                        <img src="/user.png" alt="User" className="h-8" />
+                        <img src="../assets/user.png" alt="User" className="h-8" />
                     </Link>
                     <Link to="/cart">
-                        <img src="/cart.png" alt="Cart" className="h-8" />
+                        <img src="../assets/cart.png" alt="Cart" className="h-8" />
                     </Link>
                     <Link to="/favorites">
-                        <img src="/favorites.png" alt="Favorites" className="h-8" />
+                        <img src="../assets/favorites.png" alt="Favorites" className="h-8" />
                     </Link>
                 </div>
             </div>

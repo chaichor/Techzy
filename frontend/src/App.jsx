@@ -4,22 +4,20 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router'
 import Nav from './components/Nav';
 
 //Pages
-import Login from './pages/Login';
-import AboutUs from './pages/AboutUs';
-import AllProducts from './pages/AllProducts';
-import CheckOut from './pages/CheckOut';
-import ContactUs from './pages/ContactUs';
-import Favorites from './pages/Favorites';
-import Home from './pages/Home';
-import Keyboards from './pages/Keyboards';
-import Keycaps from './pages/Keycaps';
-import PasswordRecovery from './pages/PasswordRecovery';
-import Products from './pages/Products';
-import Profile from './pages/Profile';
-import Register from './pages/Register';
-import ShoppingCart from './pages/ShoppingCart';
-import Switches from './pages/Switches';
-import TermsConditions from './pages/TermsConditions';
+import Login from './pages/user/Login';
+import AboutUs from './pages/user/AboutUs';
+import AllProducts from './pages/user/AllProducts';
+import CheckOut from './pages/user/CheckOut';
+import ContactUs from './pages/user/ContactUs';
+import Favorites from './pages/user/Favorites';
+import Home from './pages/user/Home';
+import PasswordRecovery from './pages/user/PasswordRecovery';
+import Products from './pages/user/Products';
+import Profile from './pages/user/Profile';
+import Register from './pages/user/Register';
+import ShoppingCart from './pages/user/ShoppingCart';
+import Switches from './pages/user/Switches';
+import TermsConditions from './pages/user/TermsConditions';
 
 function App() {
 
