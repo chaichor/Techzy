@@ -1,5 +1,4 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router'
-import './App.css'
 
 //Components
 import Nav from './components/Nav';
