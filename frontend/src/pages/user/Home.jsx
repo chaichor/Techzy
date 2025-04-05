@@ -13,9 +13,8 @@ const Home = () => {
             
         </div>
         <div className="bg-[#100537]">
-            <div className="pt-100"> {/* Espacio para separar del Nav */}
+            <div className="pt-1"> {/* Espacio para separar del Nav */}
             <InfoHome />
-
             </div>
             
         </div>
