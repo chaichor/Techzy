@@ -11,7 +11,7 @@ const HeaderHome = () => {
             document.querySelectorAll(".img").forEach((img) => {
                 const origin = img.getAttribute("data-origin");
                 if (origin !== "left" && origin !== "right") {
-                    img.setAttribute("data-origin", "left");
+                    img.setAttribute("data-origin", "right");
                 }
             });
 

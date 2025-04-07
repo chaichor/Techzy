@@ -19,19 +19,19 @@ const InfoHome = () => {
                     x: () => {
                         // Determina la posición inicial en función del "data-origin"
                         const origin = img.getAttribute("data-origin");
-                        if (origin === "right") return 200;  // Desde la derecha
+                        if (origin === "left") return 200;  // Desde la derecha
                         if (origin === "center") return 0;   // Desde el centro
                         return -200;  // Desde la izquierda por defecto
                     },
-                    opacity: 0,  // Empieza invisible
+                    opacity: 1,  // Empieza invisible
                 }, {
                     x: 0,      // Mueve la imagen a su posición original
                     opacity: 1,  // Se hace visible
-                    duration: 1.5,  // Duración de la animación
+                    duration: 1,  // Duración de la animación
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: img,  // Asegúrate de que el trigger esté en la propia imagen
-                        start: "top 80%",  // Empieza cuando la parte superior de la imagen esté al 80% del viewport
+                        start: "top 60%",  // Empieza cuando la parte superior de la imagen esté al 80% del viewport
                         end: "bottom top",  // Termina cuando la parte inferior de la imagen toque la parte superior del viewport
                         scrub: true,       // Desplazamiento suave
                         markers: true,     // Muestra los marcadores para depuración
