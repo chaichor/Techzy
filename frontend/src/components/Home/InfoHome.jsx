@@ -41,7 +41,7 @@ const InfoHome = () => {
     }, []);
 
     return (
-        <section className="bg-[#100537] py-16 mt-8">
+        <section className="bg-[#100537] py-2 mt-8">
             <div className="grid grid-cols-1 md:grid-cols-2 items-center w-full row"> {/* Añadí la clase row para ScrollTrigger */}
                 {/* Sección Izquierda: Imagen que se desliza desde la derecha */}
                 <div className="relative w-full h-full">
