@@ -28,8 +28,8 @@ const Nav = () => {
 
     return (
         <nav
-            className={`p-4 text-white shadow-md z-50 transition-all duration-300 
-                        ${isSticky ? 'bg-[#100537] rounded-lg backdrop-blur-lg py-2 scale-95 fixed top-0 left-0 right-0' : 'bg-[#100537] py-4 relative'}`}
+            className={`p-4 text-white shadow-md z-50 transition-all duration-300
+                        ${isSticky ? 'bg-[#100537] rounded-lg backdrop-blur-lg py-2 scale-95 fixed top-0 left-0 right-0' : 'bg-primary py-4 relative'}`}
         >
             <div className="max-w-screen-xl mx-auto flex items-center justify-between">
                 {/* Logo alineado a la izquierda con padding */}
@@ -76,7 +76,7 @@ const Nav = () => {
 
                 {/* Íconos alineados a la derecha con espaciado */}
                 <div className="flex items-center space-x-6 pr-4">
-                    <Link to="/profile">
+                    <Link to="/">
                         <img src="/user.png" alt="User" className={`h-8 transition-all duration-300 ${isSticky ? 'h-10' : 'h-8'}`} />
                     </Link>
                     <Link to="/cart">
