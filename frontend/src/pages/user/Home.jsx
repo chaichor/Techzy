@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderHome from '../../components/Home/headerHome'; 
-import InfoHome from '../../components/Home/InfoHome';
+import InfoHome from '../../components/Home/infoHome';
 
 const Home = () => {
     return (
