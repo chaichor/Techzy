@@ -25,8 +25,7 @@ const Nav = () => {
     return (
         <nav
             className={`p-4 text-white z-50 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] 
-                        ${isSticky ? 'bg-[#100537] rounded-2xl backdrop-blur-lg py-3 fixed top-4 left-4 right-4 shadow-[0_8px_20px_rgba(65,215,252,0.3)] scale-[0.98]' : 'bg-primary py-6 relative'}
-            `}
+                        ${isSticky ? 'bg-[#100537] rounded-2xl backdrop-blur-lg py-3 fixed top-4 left-4 right-4 shadow-[0_8px_20px_rgba(65,215,252,0.3)] scale-[0.98]' : 'bg-primary py-6 relative'}`}
         >
             <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
                 {/* Logo */}
@@ -53,11 +52,23 @@ const Nav = () => {
                             Inicio
                         </Link>
                     </li>
-                    <li>
-                        <Link to="/categorias" className={`${isActive("/categorias")} transition-colors duration-[1000ms] hover:text-[#41D7FC]`}>
+
+                    {/* Menú desplegable de Categorías */}
+                    <li className="relative group">
+                        <button
+                            className={`${isActive("/categorias")} transition-colors duration-[1000ms] hover:text-[#41D7FC]`}
+                            onClick={(e) => e.preventDefault()} // No navegar al hacer click en "Categorías"
+                        >
                             Categorías
-                        </Link>
+                        </button>
+                        <div className="absolute left-0 hidden mt-2 space-y-4 bg-[#100537] p-4 rounded-xl group-hover:block">
+                            <Link to="/productos" className="block text-white hover:text-[#41D7FC]">Todos los productos</Link>
+                            <Link to="/teclados" className="block text-white hover:text-[#41D7FC]">Teclados</Link>
+                            <Link to="/keycaps" className="block text-white hover:text-[#41D7FC]">Keycaps</Link>
+                            <Link to="/switches" className="block text-white hover:text-[#41D7FC]">Switches</Link>
+                        </div>
                     </li>
+
                     <li>
                         <Link to="/sobre-nosotros" className={`${isActive("/sobre-nosotros")} transition-colors duration-[1000ms] hover:text-[#41D7FC]`}>
                             Sobre nosotros
@@ -85,7 +96,7 @@ const Nav = () => {
             </div>
 
             {/* Menú desplegable en pantallas pequeñas */}
-            <div className={`md:hidden ${isMenuOpen ? "block" : "hidden"} bg-[#100537] p-4 rounded-b-xl shadow-md`}> 
+            <div className={`md:hidden ${isMenuOpen ? "block" : "hidden"} bg-[#100537] p-4 rounded-b-xl shadow-md`}>
                 <ul className="space-y-4 text-center">
                     <li>
                         <Link to="/" className={`${isActive("/")} block text-white`}>
@@ -114,6 +125,7 @@ const Nav = () => {
 };
 
 export default Nav;
+
 
 
 
