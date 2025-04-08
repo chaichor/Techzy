@@ -10,7 +10,6 @@ const Nav = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            // Detectar si el scroll ha superado los 500px
             if (window.scrollY > 500) {
                 setIsSticky(true);
             } else {
@@ -20,16 +19,16 @@ const Nav = () => {
 
         window.addEventListener('scroll', handleScroll);
 
-        // Limpiar el evento de scroll al desmontar el componente
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <nav
-            className={`p-4 text-white shadow-md z-50 transition-all duration-500 ease-in-out
-                        ${isSticky ? 'bg-[#100537] rounded-lg backdrop-blur-lg py-2 scale-95 fixed top-0 left-0 right-0 shadow-[0_0_10px_4px_rgba(65,215,252,0.8)]' : 'bg-primary py-4 relative'}`}
+            className={`p-4 text-white z-50 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] 
+                        ${isSticky ? 'bg-[#100537] rounded-2xl backdrop-blur-lg py-3 fixed top-4 left-4 right-4 shadow-[0_8px_20px_rgba(65,215,252,0.3)] scale-[0.98]' : 'bg-primary py-6 relative'}
+            `}
         >
-            <div className="max-w-screen-xl mx-auto flex items-center justify-between">
+            <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
                 {/* Logo */}
                 <Link to="/" className="flex items-center space-x-2 pl-4">
                     <img src="/techzy.svg" alt="Techzy Logo" className={`h-10 transition-all duration-500 ${isSticky ? 'h-8' : 'h-10'}`} />
@@ -73,20 +72,20 @@ const Nav = () => {
 
                 {/* Íconos */}
                 <div className="flex items-center space-x-6 pr-4">
-                    <Link to="/">
+                    <Link to="/" className="transition duration-300 hover:brightness-200 hover:drop-shadow-[0_0_10px_#41D7FC]">
                         <img src="/user.png" alt="User" className={`h-8 transition-all duration-300 ${isSticky ? 'h-10' : 'h-8'}`} />
                     </Link>
-                    <Link to="/cart">
+                    <Link to="/cart" className="transition duration-300 hover:brightness-200 hover:drop-shadow-[0_0_10px_#41D7FC]">
                         <img src="/cart.png" alt="Cart" className={`h-8 transition-all duration-300 ${isSticky ? 'h-10' : 'h-8'}`} />
                     </Link>
-                    <Link to="/favorites">
+                    <Link to="/favorites" className="transition duration-300 hover:brightness-200 hover:drop-shadow-[0_0_10px_#41D7FC]">
                         <img src="/favorites.png" alt="Favorites" className={`h-8 transition-all duration-300 ${isSticky ? 'h-10' : 'h-8'}`} />
                     </Link>
                 </div>
             </div>
 
             {/* Menú desplegable en pantallas pequeñas */}
-            <div className={`md:hidden ${isMenuOpen ? "block" : "hidden"} bg-[#100537] p-4`}>
+            <div className={`md:hidden ${isMenuOpen ? "block" : "hidden"} bg-[#100537] p-4 rounded-b-xl shadow-md`}> 
                 <ul className="space-y-4 text-center">
                     <li>
                         <Link to="/" className={`${isActive("/")} block text-white`}>
