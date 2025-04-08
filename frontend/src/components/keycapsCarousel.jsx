@@ -3,19 +3,17 @@ import ProductCard from './ProductCard';
 import './ProductCarousel.css';
 
 const products = [
-  { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
-  { imageSrc: '/byakko_p.png', productName: "BYAKKO Keycaps", price: 34.99, isFavorite: true },
-  { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },
-  { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
-  { imageSrc: '/byakko_p.png', productName: "BYAKKO Keycaps", price: 34.99, isFavorite: true },
-  { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },  { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
-  { imageSrc: '/byakko_p.png', productName: "BYAKKO Keycaps", price: 34.99, isFavorite: true },
-  { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },
+  { imageSrc: '/epomaker_p.png', productName: "EPOMAKER x AULA F75", price: 50, isFavorite: false },
+  { imageSrc: '/taihao_p.png', productName: "Tai-Hao PBTDoubleshot", price: 34.99, isFavorite: true },
+  { imageSrc: '/astronaut_p.png', productName: "PhAstronaut Resin Keyca", price: 24.99, isFavorite: false },
+  { imageSrc: '/epomaker_p.png', productName: "EPOMAKER x AULA F75", price: 50, isFavorite: false },
+  { imageSrc: '/taihao_p.png', productName: "Tai-Hao PBTDoubleshot", price: 34.99, isFavorite: true },
+  { imageSrc: '/astronaut_p.png', productName: "PhAstronaut Resin Keyca", price: 24.99, isFavorite: false },
 ];
 
 const duplicatedProducts = [...products, ...products];
 
-const ProductCarousel = () => {
+const KeycapsCarousel = () => {
   const targetRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -66,17 +64,4 @@ const ProductCarousel = () => {
 };
   
 
-export default ProductCarousel;
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default KeycapsCarousel;
