@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 const Nav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
+    const [isHovered, setIsHovered] = useState(false); // Estado para controlar hover del submenú
+    const [timeoutId, setTimeoutId] = useState(null); // ID del setTimeout para cancelarlo si es necesario
     const location = useLocation();
 
     const isActive = (path) => location.pathname === path ? "text-[#41D7FC] font-semibold" : "text-white";
@@ -21,6 +23,21 @@ const Nav = () => {
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleMouseEnter = () => {
+        if (timeoutId) {
+            clearTimeout(timeoutId); // Limpiar el timeout previo si ya existe
+        }
+        setIsHovered(true); // Abrir el submenú
+    };
+
+    const handleMouseLeave = () => {
+        const newTimeoutId = setTimeout(() => {
+            setIsHovered(false); // Cerrar el submenú después de un pequeño retraso
+        }, 200); // Retraso de 200ms
+
+        setTimeoutId(newTimeoutId); // Guardar el ID del timeout para poder cancelarlo si es necesario
+    };
 
     return (
         <nav
@@ -46,7 +63,7 @@ const Nav = () => {
                 </div>
 
                 {/* Menú principal */}
-                <ul className={`hidden md:flex space-x-8 text-lg transition-all duration-300 ${isSticky ? 'text-xl space-x-6' : 'text-lg space-x-8'}`}>
+                <ul className={`hidden md:flex space-x-12 text-lg transition-all duration-300 ${isSticky ? 'text-xl space-x-8' : 'text-lg space-x-12'}`}>
                     <li>
                         <Link to="/" className={`${isActive("/")} transition-colors duration-[1000ms] hover:text-[#41D7FC]`}>
                             Inicio
@@ -54,14 +71,30 @@ const Nav = () => {
                     </li>
 
                     {/* Menú desplegable de Categorías */}
-                    <li className="relative group">
+                    <li
+                        className="relative group"
+                        onMouseEnter={handleMouseEnter} // Mostrar submenú al pasar el mouse
+                        onMouseLeave={handleMouseLeave} // Ocultar submenú con retraso
+                    >
                         <button
-                            className={`${isActive("/categorias")} transition-colors duration-[1000ms] hover:text-[#41D7FC]`}
+                            className={`${isActive("/categorias")} transition-colors duration-[1000ms] hover:text-[#41D7FC] flex items-center`}
                             onClick={(e) => e.preventDefault()} // No navegar al hacer click en "Categorías"
                         >
                             Categorías
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                className={`h-5 w-5 ml-2 transition-transform duration-300 ${isHovered ? 'rotate-180' : ''}`}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
                         </button>
-                        <div className="absolute left-0 hidden mt-2 space-y-4 bg-[#100537] p-4 rounded-xl group-hover:block">
+                        <div
+                            className={`absolute left-0 mt-2 space-y-4 bg-[#100537] p-4 rounded-xl border-2 border-[#41D7FC] w-56 transition-all duration-300 
+                                        ${isHovered ? 'block' : 'hidden'}`}
+                        >
                             <Link to="/productos" className="block text-white hover:text-[#41D7FC]">Todos los productos</Link>
                             <Link to="/teclados" className="block text-white hover:text-[#41D7FC]">Teclados</Link>
                             <Link to="/keycaps" className="block text-white hover:text-[#41D7FC]">Keycaps</Link>
@@ -125,6 +158,9 @@ const Nav = () => {
 };
 
 export default Nav;
+
+
+
 
 
 

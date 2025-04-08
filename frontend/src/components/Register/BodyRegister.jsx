@@ -6,10 +6,10 @@ const BodyRegister = () => {
             <div className="grid grid-cols-3 gap-4">
                 <div className="">
                     <img
-                        src="/triangles.png" // Cambia la ruta de la imagen según sea necesario
+                        src="/triangles.png" 
                         alt="Material grafico"
-                        className="w-full max-w-none md:w-[1000px] h-auto object-contain img"
-                        data-origin="right" // Añadí data-origin
+                        className="w-full max-w-none md:w-[1000px] h-auto"
+                        data-origin="right" 
                     />
                 </div>
 
