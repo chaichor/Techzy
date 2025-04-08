@@ -30,11 +30,9 @@ function App() {
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
       <Route path="/product" element={<Products/>} />
-<<<<<<< HEAD
-      <Route path="/Favorites" element={<Favorites/>}/>
-=======
       <Route path="/contacto" element={<ContactUs/>} />
->>>>>>> 60b461a1f1b4f0c492bb4d607c11085c8b120bfb
+      <Route path="/favoritos" element={<Favorites/>} />
+
 
     </Routes>
     </Router>
