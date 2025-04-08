@@ -32,7 +32,13 @@ function App() {
       <Route path="/product" element={<Products/>} />
       <Route path="/contacto" element={<ContactUs/>} />
       <Route path="/favorites" element={<Favorites/>} />
+<<<<<<< HEAD
       <Route path="/cart" element={<ShoppingCart/>} />
+=======
+      <Route path="/sobre-nosotros" element={<Login/>} />
+
+
+>>>>>>> 46be1f27e0f412f07b0fa34fba5f56f2c5ed992d
     </Routes>
     </Router>
 
