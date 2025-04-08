@@ -1,0 +1,31 @@
+/* Contenedor del carrusel */
+.carousel-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    width: 100%;
+    /* La altura se establece directamente en el componente (h-[480px]) */
+    scroll-behavior: smooth;
+  }
+  
+  /* Ocultar scrollbar para navegadores WebKit */
+  .carousel-container::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Para Firefox y otros navegadores */
+  .carousel-container {
+    scrollbar-width: none;
+  }
+  
+  /* La pista del carrusel, con padding en ambos extremos (superior e inferior) */
+  .carousel-track {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  
+  
+  
