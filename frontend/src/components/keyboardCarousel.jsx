@@ -4,18 +4,16 @@ import './ProductCarousel.css';
 
 const products = [
   { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
-  { imageSrc: '/byakko_p.png', productName: "BYAKKO Keycaps", price: 34.99, isFavorite: true },
-  { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },
+  { imageSrc: '/gx87_p.png', productName: "MCHOSE GX87", price: 99.99, isFavorite: true },
+  { imageSrc: '/mchoseace68_p.png', productName: "MCHOSE ACE68", price: 85.99, isFavorite: false},
   { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
-  { imageSrc: '/byakko_p.png', productName: "BYAKKO Keycaps", price: 34.99, isFavorite: true },
-  { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },  { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
-  { imageSrc: '/byakko_p.png', productName: "BYAKKO Keycaps", price: 34.99, isFavorite: true },
-  { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },
+  { imageSrc: '/gx87_p.png', productName: "MCHOSE GX87", price: 99.99, isFavorite: true },
+  { imageSrc: '/mchoseace68_p.png', productName: "MCHOSE ACE68", price: 85.99, isFavorite: false},
 ];
 
 const duplicatedProducts = [...products, ...products];
 
-const ProductCarousel = () => {
+const KeyboardCarousel = () => {
   const targetRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -66,17 +64,4 @@ const ProductCarousel = () => {
 };
   
 
-export default ProductCarousel;
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default KeyboardCarousel;
