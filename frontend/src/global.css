@@ -7,5 +7,16 @@
     --color-subsecondary: #41D7FC;
 }
 
+/* Ocultar scrollbar en contenedor */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+
 
 
