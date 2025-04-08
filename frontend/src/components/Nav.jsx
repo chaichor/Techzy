@@ -64,7 +64,7 @@ const Nav = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/contacto" className={`${isActive("/contacto")} transition-colors duration-[1000ms] hover:text-[#41D7FC]`}>
+                        <Link to="/product" className={`${isActive("/contacto")} transition-colors duration-[1000ms] hover:text-[#41D7FC]`}>
                             Contáctanos
                         </Link>
                     </li>
