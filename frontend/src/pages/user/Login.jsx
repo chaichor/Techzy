@@ -3,34 +3,41 @@ import LoginForm from '../../components/Login/LoginForm';
 
 const Login = () => {
     return (
-        <div className="bg-[#100537]">
+        <>
+        <div className="bg-[#100537] w-screen overflow-x-hidden">
             <div className="grid grid-cols-1 md:grid-cols-6">
                 {/* Imagen lateral izquierda */}
-                <div className="hidden md:block col-span-1">
+                <div className="hidden md:flex  h-screen">
                     <img
                         src="/triangles.png"
                         alt="Material gráfico"
-                        className="w-full h-full"  // Usamos object-cover para que cubra el contenedor sin deformarse
+                        className="w-full "
                     />
                 </div>
 
-                {/* Formulario en el centro */}
-                <div className="col-span-4 flex justify-center items-center">
+                {/* Formulario central */}
+                <div className="col-span-4 flex justify-center items-center h-screen">
                     <LoginForm />
                 </div>
 
                 {/* Imagen lateral derecha */}
-                <div className="hidden md:block col-span-1 flex">
+                <div className="hidden md:flex h-screen">
                     <img
                         src="/triangles_right.png"
                         alt="Material gráfico"
-                        className="w-full h-full"  // Usamos object-cover para que cubra el contenedor sin deformarse
+                        className="w-full "
                     />
                 </div>
             </div>
         </div>
+
+        </>
     );
 };
 
 export default Login;
+
+
+
+
 

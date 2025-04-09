@@ -9,7 +9,6 @@ const ContactUs = () => {
             src="/triangles.png" // Cambia la ruta de la imagen según sea necesario
             alt="Material grafico"
             className="w-full max-w-none md:w-[1000px] h-auto object-contain img"
-            data-origin="right" // Añadí data-origin
         />
     </div>
 
