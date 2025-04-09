@@ -116,7 +116,7 @@ const Nav = () => {
 
                 {/* Íconos */}
                 <div className="flex items-center space-x-6 pr-4">
-                    <Link to="/" className="transition duration-300 hover:brightness-200 hover:drop-shadow-[0_0_10px_#41D7FC]">
+                    <Link to="/product" className="transition duration-300 hover:brightness-200 hover:drop-shadow-[0_0_10px_#41D7FC]">
                         <img src="/user.png" alt="User" className={`h-8 transition-all duration-300 ${isSticky ? 'h-10' : 'h-8'}`} />
                     </Link>
                     <Link to="/cart" className="transition duration-300 hover:brightness-200 hover:drop-shadow-[0_0_10px_#41D7FC]">
