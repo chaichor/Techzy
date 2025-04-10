@@ -18,6 +18,7 @@ import Register from './pages/user/Register';
 import ShoppingCart from './pages/user/ShoppingCart';
 import Switches from './pages/user/Switches';
 import TermsConditions from './pages/user/TermsConditions';
+import Footer from './pages/user/Footer';
 
 function App() {
 
@@ -34,8 +35,13 @@ function App() {
       <Route path="/favorites" element={<Favorites/>} />
       <Route path="/cart" element={<ShoppingCart/>} />
       <Route path="/sobre-nosotros" element={<Login/>} />
+<<<<<<< HEAD
       <Route path="/allproducts" element={<AllProducts/>} />
       <Route path="/checkout" element={<CheckOut/>} />
+=======
+      <Route path="Footer" element={<Footer/>}/>
+      <Route path="Profile" element={<Profile/>}/>
+>>>>>>> a5992c927eeba87a652039ad774ef46a66afc4b9
 
 
     </Routes>
