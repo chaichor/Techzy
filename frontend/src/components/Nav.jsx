@@ -95,7 +95,7 @@ const Nav = () => {
                             className={`absolute left-0 mt-2 space-y-4 bg-[#100537] p-4 rounded-xl border-2 border-[#41D7FC] w-56 transition-all duration-300 
                                         ${isHovered ? 'block' : 'hidden'}`}
                         >
-                            <Link to="/productos" className="block text-white hover:text-[#41D7FC]">Todos los productos</Link>
+                            <Link to="/allproducts" className="block text-white hover:text-[#41D7FC]">Todos los productos</Link>
                             <Link to="/teclados" className="block text-white hover:text-[#41D7FC]">Teclados</Link>
                             <Link to="/keycaps" className="block text-white hover:text-[#41D7FC]">Keycaps</Link>
                             <Link to="/switches" className="block text-white hover:text-[#41D7FC]">Switches</Link>
@@ -116,7 +116,7 @@ const Nav = () => {
 
                 {/* Íconos */}
                 <div className="flex items-center space-x-6 pr-4">
-                    <Link to="/product" className="transition duration-300 hover:brightness-200 hover:drop-shadow-[0_0_10px_#41D7FC]">
+                    <Link to="/" className="transition duration-300 hover:brightness-200 hover:drop-shadow-[0_0_10px_#41D7FC]">
                         <img src="/user.png" alt="User" className={`h-8 transition-all duration-300 ${isSticky ? 'h-10' : 'h-8'}`} />
                     </Link>
                     <Link to="/cart" className="transition duration-300 hover:brightness-200 hover:drop-shadow-[0_0_10px_#41D7FC]">

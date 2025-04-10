@@ -34,6 +34,8 @@ function App() {
       <Route path="/favorites" element={<Favorites/>} />
       <Route path="/cart" element={<ShoppingCart/>} />
       <Route path="/sobre-nosotros" element={<Login/>} />
+      <Route path="/allproducts" element={<AllProducts/>} />
+      <Route path="/checkout" element={<CheckOut/>} />
 
 
     </Routes>
