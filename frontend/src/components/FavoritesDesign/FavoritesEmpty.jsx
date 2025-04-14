@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import FooterDesign from '../FooterDesign';
 
 
 
@@ -28,7 +27,6 @@ const FavoritesEmpty = () => {
              </Link>
            </main>
      
-           <FooterDesign />
          </div>
        );
      };

@@ -20,6 +20,7 @@ import Switches from './pages/user/Switches';
 import TermsConditions from './pages/user/TermsConditions';
 import Footer from './pages/user/Footer';
 import EditProfileDesktop from './components/ProfileDesign/EditProfileDesign';
+import RecoveryDesign1 from './pages/user/Recovery1';
 
 function App() {
 

@@ -5,9 +5,11 @@ import ProductCarousel from '../../components/productCarousel';
 import KeyboardCarousel from '../../components/keyboardCarousel';
 import KeycapsCarousel from '../../components/keycapsCarousel';
 import SwitchesCarousel from '../../components/switchesCarousel';
+import FooterDesign from '../../components/FooterDesign';
 
 const Home = () => {
   return (
+    
     <>
       <div className="bg-[#100537]">
         <div className="pt-24"> {/* Espacio para separar del Nav */}
@@ -81,6 +83,8 @@ const Home = () => {
 
         <SwitchesCarousel />
       </section>
+      <FooterDesign />
+    <div/>
     </>
   );
 };
