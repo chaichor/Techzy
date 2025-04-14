@@ -8,7 +8,8 @@ const products = [
   { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },
   { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
   { imageSrc: '/byakko_p.png', productName: "BYAKKO Keycaps", price: 34.99, isFavorite: true },
-  { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },  { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
+  { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },  
+  { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
   { imageSrc: '/byakko_p.png', productName: "BYAKKO Keycaps", price: 34.99, isFavorite: true },
   { imageSrc: '/switch_p.png', productName: "Phoenix Switch", price: 24.99, isFavorite: false },
 ];

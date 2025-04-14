@@ -1,10 +1,10 @@
 import React from 'react';
-import ProfileDesign from '../../components/ProfileDesign/ProfileDesign';
+import EditProfileDesign from '../../components/ProfileDesign/EditProfileDesign';
 
 const Profile = () => {
     return (
         <>
-        <div><ProfileDesign/></div>
+        <div><EditProfileDesign/></div>
         </>
     );
 };

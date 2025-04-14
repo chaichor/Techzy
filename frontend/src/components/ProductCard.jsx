@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { FiShoppingCart } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({
   imageSrc = '/placeholder.png',
@@ -10,14 +11,20 @@ const ProductCard = ({
   onToggleFavorite = () => {},
   onAddToCart = () => {}
 }) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate('/product'); 
+  };
   return (
     <div
+    onClick={handleCardClick}
       className="
         relative
         bg-[#241362] 
         text-white
         w-72
-        h-[420px]              /* Altura aumentada */
+        h-[420px]            
         rounded-2xl 
         p-4
         flex 
@@ -77,7 +84,7 @@ const ProductCard = ({
             bg-[#100537] 
             text-white 
             px-3 py-1
-            rounded-lg 
+            rounded-full 
             flex 
             items-center 
             space-x-2
