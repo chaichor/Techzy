@@ -40,6 +40,13 @@ const LoginForm = () => {
                         Contraseña
                     </label>
                 </div>
+                <div className="text-center mt-4 text-white">
+                    <p>
+                    <Link to="/recoverydesign1" className="text-subprimary hover:underline">
+                        ¿Olvidaste tu contraseña?
+                        </Link>
+                    </p>
+                </div>
 
                 {/* Botón de ingresar */}
                 <button
@@ -58,6 +65,7 @@ const LoginForm = () => {
                         </Link>
                     </p>
                 </div>
+
             </form>
         </div>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import Cart from '../../components/ShoppingCart/EmptyCart';
 import CartFull from '../../components/ShoppingCart/CartFull';
+import FooterDesign from '../../components/FooterDesign';
 
 const ShoppingCart = () => {
     return (
@@ -10,6 +11,7 @@ const ShoppingCart = () => {
                 <Cart/>
             </div>  
         </div>
+        <FooterDesign />
         </>
     );
 };

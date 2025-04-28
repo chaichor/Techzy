@@ -3,7 +3,7 @@ import { FaInstagram, FaTiktok, FaCcVisa, FaCcMastercard, FaInfoCircle } from "r
 
 const FooterA = () => {
   return (
-    <footer className="bg-[#18013c] text-purple-300 px-6 py-10 text-sm md:text-base">
+    <footer className="bg-[#1E0F56] text-subprimary px-6 py-10 text-sm md:text-base">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
 
         <div>
@@ -46,10 +46,10 @@ const FooterA = () => {
       </div>
 
 
-      <div className="mt-10 pt-6 border-t border-purple-700 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm gap-4">
+      <div className="mt-10 pt-6 border-t border-subprimary flex flex-col md:flex-row justify-between items-center text-xs md:text-sm gap-4">
         <div className="flex items-center gap-2">
           <img src="/logo_header.png" alt="Techzy Logo" className="mx-auto w-30" />
-          <span className="text-purple-400">2025© Techzy. All rights reserved.</span>
+          <span className="text-subprimaru">2025© Techzy. All rights reserved.</span>
         </div>
         
         {/* aqui va el falta poner la ruta de terminos y condiciones*/}

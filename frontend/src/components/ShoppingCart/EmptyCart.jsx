@@ -18,7 +18,7 @@ const EmptyCart = () => {
                 Aún no tienes nada en tus favoritos
             </p>
 
-            <Link to="/categorias">
+            <Link to="/cartfull">
                 <button className=" px-8 py-3 bg-[#100537] text-white font-semibold border-2 border-[#241362] rounded-lg
                     shadow-xl hover:bg-[#241362] hover:text-white transition-all duration-300
                     hover:shadow-[0px_4px_20px_#241362]">

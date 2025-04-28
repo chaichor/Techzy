@@ -1,7 +1,9 @@
 import React from 'react';
+import FooterDesign from '../../components/FooterDesign';
 
 const AboutUs = () => {
     return (
+        <>
         <section className="bg-[#100537] py-20 px-4 space-y-32 relative overflow-hidden">
             {/* Imagen decorativa superior derecha */}
             <img
@@ -62,6 +64,8 @@ const AboutUs = () => {
                 className="absolute bottom-0 left-0 w-[250px] md:w-[400px] opacity-90 pointer-events-none"
             />
         </section>
+        <FooterDesign />
+        </>
     );
 };
 

@@ -19,7 +19,7 @@ const UserProfile = () => {
           <h2 className="text-white font-bold text-2xl">Ethan</h2>
           <p className="text-purple-100 text-lg mb-6">zzz</p>
           <Link
-             to="/EditProfileDesign"  className="flex items-center gap-3 bg-[#100537] text-white px-6 py-3 rounded-full border border-purple-500 hover:bg-[#241362] transition text-base">
+             to="/editprofile"  className="flex items-center gap-3 bg-[#100537] text-white px-6 py-3 rounded-full border border-purple-500 hover:bg-[#241362] transition text-base">
                Editar Perfil <Pencil size={18} />
            </Link>
            </div>
@@ -47,10 +47,13 @@ const UserProfile = () => {
 
           {/* Botón cerrar sesión */}
           <div className="mt-8 flex justify-end">
+            
+          <Link to="/login">
             <button className="flex items-center gap-2 text-white text-base hover:text-purple-400 transition">
               <LogOut size={20} />
               Cerrar Sesión
             </button>
+          </Link>
           </div>
         </div>
       </div>

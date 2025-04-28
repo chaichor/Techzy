@@ -2,6 +2,8 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router'
 
 //Components
 import Nav from './components/Nav';
+import CartFull from './components/ShoppingCart/CartFull';
+import EditProfle from './components/ProfileDesign/EditProfileDesign';
 
 //Pages
 import Login from './pages/user/Login';
@@ -17,9 +19,10 @@ import Profile from './pages/user/Profile';
 import Register from './pages/user/Register';
 import ShoppingCart from './pages/user/ShoppingCart';
 import Switches from './pages/user/Switches';
+import Keyboard from './pages/user/Keyboards';
+import Keycaps from './pages/user/Keycaps';
 import TermsConditions from './pages/user/TermsConditions';
 import Footer from './pages/user/Footer';
-import EditProfileDesktop from './components/ProfileDesign/EditProfileDesign';
 import RecoveryDesign1 from './pages/user/Recovery1';
 
 function App() {
@@ -40,9 +43,14 @@ function App() {
       <Route path="/checkout" element={<CheckOut/>} />
       <Route path="Footer" element={<Footer/>}/>
       <Route path="Profile" element={<Profile/>}/>
-      
       <Route path="/sobre-nosotros" element={<AboutUs/>} />
-
+      <Route path="/switches" element={<Switches/>}/>
+      <Route path="/keyboard" element={<Keyboard/>}/>
+      <Route path="/keycaps" element={<Keycaps/>}/>
+      <Route path="/cartfull" element={<CartFull/>}/>
+      <Route path="/editprofile" element={<EditProfle/>}/>
+      <Route path="/termconditions" element={<TermsConditions/>}/>
+      <Route path="/recoverydesign1" element={<RecoveryDesign1/>}/>
 
     </Routes>
     </Router>

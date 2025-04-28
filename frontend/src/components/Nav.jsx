@@ -96,7 +96,7 @@ const Nav = () => {
                                         ${isHovered ? 'block' : 'hidden'}`}
                         >
                             <Link to="/allproducts" className="block text-white hover:text-[#41D7FC]">Todos los productos</Link>
-                            <Link to="/teclados" className="block text-white hover:text-[#41D7FC]">Teclados</Link>
+                            <Link to="/keyboard" className="block text-white hover:text-[#41D7FC]">Teclados</Link>
                             <Link to="/keycaps" className="block text-white hover:text-[#41D7FC]">Keycaps</Link>
                             <Link to="/switches" className="block text-white hover:text-[#41D7FC]">Switches</Link>
                         </div>

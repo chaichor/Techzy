@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const EditProfileDesktop = () => {
   return (
     <div className="min-h-screen bg-[#1c005c] flex items-center justify-center p-10">

@@ -4,6 +4,7 @@ import DescriptionProduct from '../../components/Product/DescriptionProduct';
 import RatingBar from '../../components/Product/RatingBar';
 import FormReviewProduct from '../../components/Product/FormReviewProduct';
 import CommentsProducts from '../../components/Product/CommentsProducts';
+import FooterDesign from '../../components/FooterDesign';
 
 const Products = () => {
     return (
@@ -68,6 +69,7 @@ const Products = () => {
                     />
                 </div>
             </div>
+            <FooterDesign />
         </>
     );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FiTrash } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const mockItems = [
   {
@@ -119,9 +119,11 @@ const CartPage = () => {
         <div className="border-1 border-secondary p-4 rounded-2xl w-full lg:w-80 h-fit">
           <h2 className="font-bold mb-2">Resumen del pedido</h2>
           <p className="mb-4">Subtotal: <span className="font-bold">{subtotal.toFixed(2)}$</span></p>
-          <button className="max-w-none md:w-full px-8 py-3 bg-primary text-white font-semibold border-1 border-subprimary rounded-full
+          <Link to="/checkout">
+            <button className="max-w-none md:w-full px-8 py-3 bg-primary text-white font-semibold border-1 border-subprimary rounded-full
                         shadow-xl hover:bg-subprimary hover:text-primary transition-all duration-300 
                         hover:shadow-[0px_4px_20px_#8252F7]">Proceder con la compra</button>
+          </Link>
           <p className="text-xs text-subprimary mt-2 pt-2 pl-2">Impuestos y envío calculados al finalizar la compra.</p>
         </div>
       </div>

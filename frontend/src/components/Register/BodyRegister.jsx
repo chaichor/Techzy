@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const BodyRegister = () => {
     return (
@@ -44,7 +45,7 @@ const BodyRegister = () => {
                         </div>
                         <div class="flex items-center pl-1.5">
                         <input id="purple-checkbox" type="checkbox" value="" class="w-4 h-4 text-purple-600 bg-primary border-subprimary rounded-sm focus:ring-purple-600 ring-offset-gray-800 focus:ring-2"/>
-                        <label for="link-checkbox" class="ms-2 text-sm font-medium  text-subprimary">He leido y acepto <a href="#" class="text-subsecondary dark:text-subsecondary hover:underline">terminos y condiciones</a>.</label>
+                        <label for="link-checkbox" class="ms-2 text-sm font-medium  text-subprimary">He leido y acepto <Link to="/termconditions"><a href="#" class="text-subsecondary dark:text-subsecondary hover:underline">terminos y condiciones</a></Link>.</label>
                         </div>
                         <button type="submit" className="max-w-none md:w-[900px] mt-6 px-8 py-3 bg-primary text-white font-semibold border-1 border-subprimary rounded-full
                         shadow-xl hover:bg-subprimary hover:text-primary transition-all duration-300 
