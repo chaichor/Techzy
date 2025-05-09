@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+@theme {
+    --color-primary: #100537;
+    --color-secondary: #241362;
+    --color-subprimary: #8252F7;
+    --color-subsecondary: #41D7FC;
+}
+
 /* Ocultar scrollbar en contenedor */
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
@@ -9,8 +16,7 @@
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
   }
+
 .body {
-    background-color: var(--color-primary) !important;
-    margin: 0;
-    padding: 0;
-  }
+  background-color: var(--color-primary);
+}
