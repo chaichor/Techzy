@@ -1,4 +1,4 @@
-# Techzy - Monorepo
+ # Techzy - Monorepo
 
 Este proyecto utiliza TurboRepo para gestionar múltiples aplicaciones en un solo repositorio.
 
@@ -36,6 +36,11 @@ npm run dev
 # o
 
 cd backend
+npm run dev
+
+# o
+
+Para ejecutar todos al mismo tiempo, en la carpeta madre
 npm run dev
 ```
 
