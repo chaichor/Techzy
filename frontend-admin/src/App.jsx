@@ -4,6 +4,8 @@ import Dashboard from './pages/admin/Dashboard'
 import Management from './pages/admin/Management'
 import ContactForms from './pages/admin/ContactForms'
 import Brands from './pages/admin/Brands'
+import Users from './pages/admin/Users'
+import Products from './pages/admin/Products'
 import ProtectedRoute from './components/protected/ProtectedRoute'
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Route path="/admin/management" element={<ProtectedRoute><Management /></ProtectedRoute>} />
           <Route path="/admin/contact-forms" element={<ProtectedRoute><ContactForms /></ProtectedRoute>} />
           <Route path="/admin/brands" element={<ProtectedRoute><Brands /></ProtectedRoute>} />
+          <Route path="/admin/users" element={<ProtectedRoute><Users /></ProtectedRoute>} />
+          <Route path="/admin/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
