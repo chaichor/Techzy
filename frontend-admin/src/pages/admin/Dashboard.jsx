@@ -321,7 +321,7 @@ const Dashboard = () => {
               className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" 
             >
               <p className="text-xs text-[#41D7FC]">Ventas esta Semana</p>
-              <p className="text-2xl font-bold flex items-center">19 <span className="text-yellow-400 text-sm ml-2">↘</span></p>
+              <p className="text-2xl font-bold flex items-center">19 <span className="text-yellow text-sm ml-2">↘</span></p>
             </motion.div>
             
             <motion.div 
@@ -365,7 +365,7 @@ const Dashboard = () => {
           </div>
           
           {/* Gráficos - Visualizaciones interactivas de datos de ventas y distribución */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 justify-center text-center">
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
