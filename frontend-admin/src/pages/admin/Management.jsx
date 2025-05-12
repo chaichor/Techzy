@@ -91,10 +91,12 @@ const Management = () => {
           
           {/* Fila inferior: 3 tarjetas */}
           <div className="col-span-1">
+          <Link to="/admin/rating">
             <CrudCard 
               title="CRUD de Assessment" 
               icon={<BarChart3 size={64} />} 
             />
+            </Link>
           </div>
           <div className="col-span-1">
             <Link to="/admin/brands">

@@ -7,6 +7,7 @@ import Brands from './pages/admin/Brands'
 import Users from './pages/admin/Users'
 import Products from './pages/admin/Products'
 import ProtectedRoute from './components/protected/ProtectedRoute'
+import Rating from './pages/admin/Rating'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/admin/users" element={<ProtectedRoute><Users /></ProtectedRoute>} />
           <Route path="/admin/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/admin/rating" element={<ProtectedRoute><Rating></Rating></ProtectedRoute>}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
