@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { CheckCircle, XCircle, Trash2 } from "lucide-react";
 
 const initialReviews = [
@@ -49,7 +47,8 @@ export default function ReviewApproval() {
         Reseñas <div className="w-5 h-5 bg-white rounded" />
       </h1>
 
-      <Card className="bg-[#1c1240] text-white w-full max-w-2xl rounded-2xl p-4">
+      {/* Reemplazo de <Card> */}
+      <div className="bg-[#1c1240] text-white w-full max-w-2xl rounded-2xl p-4 border border-[#3f2d7a] shadow">
         <h2 className="text-lg font-semibold mb-4">Lista de reseñas por aprobar</h2>
         <div className="space-y-4">
           {reviews.map((review) => (
@@ -91,7 +90,7 @@ export default function ReviewApproval() {
           <button className="text-cyan-400">◀</button>
           <button className="text-cyan-400">▶</button>
         </div>
-      </Card>
+      </div>
 
       <div className="flex gap-8 mt-10">
         <div className="flex flex-col items-center gap-2">
