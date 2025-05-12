@@ -77,16 +77,20 @@ const Management = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto">
           {/* Fila superior: 2 tarjetas */}
           <div className="col-span-1 md:col-span-1">
+          <Link to="/admin/users">
             <CrudCard 
               title="CRUD de Users"
               icon={<Users size={64} />} 
             />
+          </Link> 
           </div>
           <div className="col-span-1 md:col-span-2">
+          <Link to="/admin/products">
             <CrudCard 
               title="CRUD de Product" 
               icon={<Package size={64} />} 
             />
+          </Link> 
           </div>
           
           {/* Fila inferior: 3 tarjetas */}
@@ -96,7 +100,7 @@ const Management = () => {
               title="CRUD de Assessment" 
               icon={<BarChart3 size={64} />} 
             />
-            </Link>
+            </Link> 
           </div>
           <div className="col-span-1">
             <Link to="/admin/brands">
