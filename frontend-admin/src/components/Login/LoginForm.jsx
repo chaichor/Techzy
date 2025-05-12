@@ -131,6 +131,14 @@ const LoginForm = () => {
                     {loading ? 'Iniciando sesión...' : 'Ingresar al Panel'}
                 </button>
 
+                <div className="text-center mt-4 text-white">
+                    <p>
+                    <Link to="/admin/RecoveryPassword" className="text-subprimary hover:underline">
+                        ¿Olvidaste tu contraseña?
+                        </Link>
+                    </p>
+                </div>
+
                 {/* Mensaje de acceso restringido */}
                 <div className="text-center mt-4 text-white">
                     <p className="text-sm">

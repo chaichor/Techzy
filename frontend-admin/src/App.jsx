@@ -8,6 +8,7 @@ import Users from './pages/admin/Users'
 import Products from './pages/admin/Products'
 import ProtectedRoute from './components/protected/ProtectedRoute'
 import Rating from './pages/admin/Rating'
+import RecoveryPassword from './pages/admin/RecoveryPassword'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/admin/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/admin/rating" element={<ProtectedRoute><Rating></Rating></ProtectedRoute>}/>
+          <Route path="/admin/RecoveryPassword" element={<RecoveryPassword />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
