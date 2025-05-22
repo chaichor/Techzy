@@ -1,5 +1,7 @@
 import React from 'react';
 import LoginForm from '../../components/Login/LoginForm';
+import TechzyLogo from '../../assets/techzy.svg';
+
 
 /**
  * Componente Login
@@ -23,25 +25,12 @@ const Login = () => {
             <div className="grid grid-cols-1 md:grid-cols-6">
                 {/* Imagen lateral izquierda */}
                 <div className="hidden md:flex h-screen">
-                    <img
-                        src="/admin_left.png"
-                        alt="Material gráfico"
-                        className="w-full"
-                    />
+                <img src={TechzyLogo} alt="Techzy Logo" className="h-20 w-20 mx-8 my-8" />
                 </div>
 
                 {/* Formulario central */}
                 <div className="col-span-4 flex justify-center items-center h-screen">
                     <LoginForm />
-                </div>
-
-                {/* Imagen lateral derecha */}
-                <div className="hidden md:flex h-screen">
-                    <img
-                        src="/admin_right.png"
-                        alt="Material gráfico"
-                        className="w-full"
-                    />
                 </div>
             </div>
         </div>

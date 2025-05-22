@@ -280,8 +280,7 @@ const Dashboard = () => {
             <Link 
               to="/admin/management" 
               className="bg-[#41D7FC] hover:bg-[#8252F7] text-[#100537] font-bold py-2 px-4 rounded transition duration-300"
-              aria-label="Ir a la página de gestión"
-            >
+              aria-label="Ir a la página de gestión">
               Gestión
             </Link>
             
@@ -305,43 +304,32 @@ const Dashboard = () => {
         <div className="max-w-7xl mx-auto">
           {/* Tarjetas de resumen de ventas - Muestra estadísticas rápidas en pequeñas tarjetas */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-6">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="bg-[#1C1650] rounded-lg p-3 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
-            >
-              <p className="text-xs text-[#41D7FC]">Ventas Hoy</p>
-              <p className="text-2xl font-bold flex items-center">10 <span className="text-green-400 text-sm ml-2">↑</span></p>
-            </motion.div>
+          <motion.div 
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.3 }}
+  className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]"
+>
+  <p className="text-xs text-[#41D7FC]">Ventas Hoy</p>
+  <p className="text-2xl font-bold flex items-center">10 <span className="text-green-400 text-sm ml-2">↑</span></p>
+</motion.div>
             
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="bg-[#1C1650] rounded-lg p-3 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" 
             >
               <p className="text-xs text-[#41D7FC]">Ventas esta Semana</p>
-              <p className="text-2xl font-bold flex items-center">19 <span className="text-yellow-400 text-sm ml-2">↘</span></p>
+              <p className="text-2xl font-bold flex items-center">19 <span className="text-yellow text-sm ml-2">↘</span></p>
             </motion.div>
             
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.2 }}
-              className="bg-[#1C1650] rounded-lg p-3 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" 
+
             >
               <p className="text-xs text-[#41D7FC]">Ventas este Mes</p>
               <p className="text-2xl font-bold flex items-center">39 <span className="text-green-400 text-sm ml-2">↑</span></p>
@@ -351,11 +339,7 @@ const Dashboard = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.3 }}
-              className="bg-[#1C1650] rounded-lg p-3 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" 
             >
               <p className="text-xs text-[#41D7FC]">Ventas últimos 3 Meses</p>
               <p className="text-2xl font-bold flex items-center">87 <span className="text-green-400 text-sm ml-2">↑</span></p>
@@ -365,12 +349,7 @@ const Dashboard = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.4 }}
-              className="bg-[#1C1650] rounded-lg p-3 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
-            >
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" >
               <p className="text-xs text-[#41D7FC]">Ventas últimos 6 Meses</p>
               <p className="text-2xl font-bold flex items-center">135 <span className="text-red-400 text-sm ml-2">↓</span></p>
             </motion.div>
@@ -379,29 +358,19 @@ const Dashboard = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.5 }}
-              className="bg-[#1C1650] rounded-lg p-3 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
-            >
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" >
               <p className="text-xs text-[#41D7FC]">Ventas en un Año</p>
               <p className="text-2xl font-bold flex items-center">347 <span className="text-red-400 text-sm ml-2">↓</span></p>
             </motion.div>
           </div>
           
           {/* Gráficos - Visualizaciones interactivas de datos de ventas y distribución */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 justify-center text-center">
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-[#1C1650] rounded-lg p-5 shadow-lg backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
-            >
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" >
               <h2 className="text-xl text-[#41D7FC] mb-4">Artículo mas comprado</h2>
               <Line data={lineChartData} options={lineOptions} />
             </motion.div>
@@ -410,12 +379,7 @@ const Dashboard = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-[#1C1650] rounded-lg p-5 shadow-lg backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
-            >
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" >
               <h2 className="text-xl text-[#41D7FC] mb-4">Mayores compras por Departamentos</h2>
               <Pie data={pieChartData} options={pieOptions} />
             </motion.div>
@@ -427,12 +391,7 @@ const Dashboard = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-[#1C1650] rounded-lg p-6 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
-            >
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" >
               <h2 className="text-lg text-[#41D7FC] mb-3">Dinero generado hoy</h2>
               <p className="text-3xl font-bold">$120</p>
             </motion.div>
@@ -441,12 +400,7 @@ const Dashboard = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-[#1C1650] rounded-lg p-6 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
-            >
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" >
               <h2 className="text-lg text-[#41D7FC] mb-3">Dinero generado hace 3 meses</h2>
               <p className="text-3xl font-bold">$7948</p>
             </motion.div>
@@ -455,12 +409,7 @@ const Dashboard = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-[#1C1650] rounded-lg p-6 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
-            >
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" >
               <h2 className="text-lg text-[#41D7FC] mb-3">Dinero generado hace 6 meses</h2>
               <p className="text-3xl font-bold">$9850</p>
             </motion.div>
@@ -469,12 +418,7 @@ const Dashboard = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-[#1C1650] rounded-lg p-6 shadow-md backdrop-blur-sm relative overflow-hidden" 
-              style={{
-                boxShadow: '0 0 15px 2px rgba(107, 226, 255, 0.5)',
-                background: 'linear-gradient(180deg, rgba(28, 22, 80, 0.8) 0%, rgba(28, 22, 80, 0.9) 100%)'
-              }}
-            >
+              className="bg-[#1C1650] rounded-lg p-3 relative overflow-hidden transition duration-300 hover:ring-2 hover:ring-[#6BE2FF] hover:scale-[1.02]" >
               <h2 className="text-lg text-[#41D7FC] mb-3">Dinero generado desde siempre</h2>
               <p className="text-3xl font-bold">$145,459</p>
             </motion.div>
