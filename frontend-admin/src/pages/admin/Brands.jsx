@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Search, 
@@ -7,162 +7,126 @@ import {
   Trash2, 
   X, 
   Flag, 
-  RefreshCw
+  RefreshCw,
+  AlertCircle,
+  CheckCircle
 } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
 import TechzyLogo from '../../assets/techzy.svg';
+
+// Importar los custom hooks
+import { 
+  useBrands, 
+  useSearchBrands, 
+  useModalBrands, 
+  useNotification 
+} from '../../hooks/brands';
 
 /**
  * Brands Component
  * 
  * Permite la gestión de marcas en el sistema, incluyendo listado,
- * búsqueda, adición, edición y eliminación.
+ * búsqueda, adición, edición y eliminación con conexión al backend.
  * 
  * Este componente implementa funcionalidad CRUD completa para marcas
  * con una interfaz intuitiva y consistente con el diseño de la aplicación.
  */
 const Brands = () => {
-  // Estado para almacenar las marcas
-  const [marcas, setMarcas] = useState([
-    { id: 1, nombre: 'Ajazz' },
-    { id: 2, nombre: 'GammaKay' },
-    { id: 3, nombre: 'Wooting' },
-    { id: 4, nombre: 'ProKeycaps' },
-    { id: 5, nombre: 'KeyLab' },
-    { id: 6, nombre: 'SwitchKing' },
-    { id: 7, nombre: 'RealLifeKey' },
-    { id: 8, nombre: 'KeyboardA' },
-    { id: 9, nombre: 'MechanicTools' },
-    { id: 10, nombre: 'DactylMods' },
-    { id: 11, nombre: 'ClickyKeys' },
-    { id: 12, nombre: 'SwitchMaster' },
-    { id: 13, nombre: 'ErgoType' },
-    { id: 14, nombre: 'TactileTech' },
-    { id: 15, nombre: 'QMKBoards' },
-    { id: 16, nombre: 'KeebWorks' },
-    { id: 17, nombre: 'ViaKeyboards' },
-    { id: 18, nombre: 'GMKClones' },
-    { id: 19, nombre: 'ArtisanCaps' },
-    { id: 20, nombre: 'ZealPC' }
-  ]);
-
-  // Estado para el término de búsqueda
-  const [busqueda, setBusqueda] = useState('');
+  // Usar custom hooks para gestionar las marcas
+  const { 
+    brands, 
+    loading, 
+    error, 
+    createBrand, 
+    updateBrand, 
+    deleteBrand,
+    reloadBrands 
+  } = useBrands();
   
-  // Estado para controlar la visibilidad del modal de agregar
-  const [mostrarModalAgregar, setMostrarModalAgregar] = useState(false);
+  // Hook para búsqueda y filtrado
+  const { 
+    searchTerm, 
+    filteredBrands, 
+    handleSearchChange 
+  } = useSearchBrands(brands);
   
-  // Estado para controlar la visibilidad del modal de editar
-  const [mostrarModalEditar, setMostrarModalEditar] = useState(false);
+  // Hook para gestión de modales
+  const { 
+    isAddModalOpen, 
+    isEditModalOpen, 
+    isDeleteModalOpen, 
+    currentBrand, 
+    brandName, 
+    closeAllModals, 
+    openAddModal, 
+    openEditModal, 
+    openDeleteModal, 
+    handleBrandNameChange 
+  } = useModalBrands();
   
-  // Estado para controlar la visibilidad del modal de eliminar
-  const [mostrarModalEliminar, setMostrarModalEliminar] = useState(false);
+  // Hook para notificaciones
+  const { 
+    notification, 
+    showSuccess, 
+    showError 
+  } = useNotification();
+
+  // Calcular el número total de marcas
+  const brandsCount = brands.length;
+
+  /**
+   * Maneja la creación de una nueva marca
+   */
+  const handleCreateBrand = async () => {
+    if (brandName.trim() === '') return;
+    
+    try {
+      await createBrand({ name: brandName });
+      showSuccess('Marca creada exitosamente');
+      closeAllModals();
+    } catch (err) {
+      showError(err.message || 'Error al crear la marca');
+    }
+  };
+
+  /**
+   * Maneja la actualización de una marca existente
+   */
+  const handleUpdateBrand = async () => {
+    if (brandName.trim() === '' || !currentBrand) return;
+    
+    try {
+      await updateBrand(currentBrand._id, { name: brandName });
+      showSuccess('Marca actualizada exitosamente');
+      closeAllModals();
+    } catch (err) {
+      showError(err.message || 'Error al actualizar la marca');
+    }
+  };
+
+  /**
+   * Maneja la eliminación de una marca
+   */
+  const handleDeleteBrand = async () => {
+    if (!currentBrand) return;
+    
+    try {
+      await deleteBrand(currentBrand._id);
+      showSuccess('Marca eliminada exitosamente');
+      closeAllModals();
+    } catch (err) {
+      showError(err.message || 'Error al eliminar la marca');
+    }
+  };
+
+  /**
+   * Refresca la lista de marcas
+   */
+  const handleRefresh = () => {
+    reloadBrands();
+    showSuccess('Datos actualizados');
+  };
   
-  // Estado para almacenar la marca actual que se está editando o eliminando
-  const [marcaActual, setMarcaActual] = useState(null);
-  
-  // Estado para el nombre de la nueva marca o la marca editada
-  const [nombreMarca, setNombreMarca] = useState('');
-
-  // Calcular el número total de marcas para mostrar en el encabezado
-  const cantidadMarcas = marcas.length;
-
-  /**
-   * Filtra las marcas basadas en el término de búsqueda
-   * @returns {Array} - Lista de marcas filtradas
-   */
-  const marcasFiltradas = () => {
-    if (!busqueda) return marcas;
-    
-    return marcas.filter(marca => 
-      marca.nombre.toLowerCase().includes(busqueda.toLowerCase())
-    ).sort((a, b) => a.nombre.localeCompare(b.nombre)); // Sort A-Z
-  };
-
-  /**
-   * Maneja el cambio en el campo de búsqueda
-   * @param {Event} e - Evento de cambio
-   */
-  const handleBusquedaChange = (e) => {
-    setBusqueda(e.target.value);
-  };
-
-  /**
-   * Abre el modal para agregar una nueva marca
-   */
-  const abrirModalAgregar = () => {
-    setNombreMarca('');
-    setMostrarModalAgregar(true);
-  };
-
-  /**
-   * Abre el modal para editar una marca existente
-   * @param {Object} marca - La marca a editar
-   */
-  const abrirModalEditar = (marca) => {
-    setMarcaActual(marca);
-    setNombreMarca(marca.nombre);
-    setMostrarModalEditar(true);
-  };
-
-  /**
-   * Abre el modal de confirmación para eliminar una marca
-   * @param {Object} marca - La marca a eliminar
-   */
-  const abrirModalEliminar = (marca) => {
-    setMarcaActual(marca);
-    setMostrarModalEliminar(true);
-  };
-
-  /**
-   * Cierra todos los modales
-   */
-  const cerrarModales = () => {
-    setMostrarModalAgregar(false);
-    setMostrarModalEditar(false);
-    setMostrarModalEliminar(false);
-    setMarcaActual(null);
-    setNombreMarca('');
-  };
-
-  /**
-   * Agrega una nueva marca a la lista
-   */
-  const agregarMarca = () => {
-    if (nombreMarca.trim() === '') return;
-    
-    const nuevaMarca = {
-      id: marcas.length > 0 ? Math.max(...marcas.map(m => m.id)) + 1 : 1,
-      nombre: nombreMarca
-    };
-    
-    setMarcas([...marcas, nuevaMarca]);
-    cerrarModales();
-  };
-
-  /**
-   * Actualiza una marca existente
-   */
-  const actualizarMarca = () => {
-    if (nombreMarca.trim() === '' || !marcaActual) return;
-    
-    setMarcas(marcas.map(marca => 
-      marca.id === marcaActual.id 
-        ? { ...marca, nombre: nombreMarca } 
-        : marca
-    ));
-    
-    cerrarModales();
-  };
-
-  /**
-   * Elimina una marca de la lista
-   */
-  const eliminarMarca = () => {
-    if (!marcaActual) return;
-    
-    setMarcas(marcas.filter(marca => marca.id !== marcaActual.id));
-    cerrarModales();
-  };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#0E0B30] text-white">
@@ -204,8 +168,17 @@ const Brands = () => {
               <h1 className="text-2xl font-bold text-white">Marcas</h1>
               <Flag size={26} className="text-[#41D7FC]" />
             </div>
-            <div className="text-[#41D7FC]">
-              Cantidad: {cantidadMarcas}
+            <div className="flex items-center space-x-3">
+              <div className="text-[#41D7FC]">
+                Cantidad: {brandsCount}
+              </div>
+              <button
+                onClick={handleRefresh}
+                className="text-[#41D7FC] hover:text-white transition-colors"
+                aria-label="Refrescar datos"
+              >
+                <RefreshCw size={20} className={loading ? 'animate-spin' : ''} />
+              </button>
             </div>
           </div>
           
@@ -218,60 +191,104 @@ const Brands = () => {
               <input
                 type="text"
                 placeholder="Buscar"
-                value={busqueda}
-                onChange={handleBusquedaChange}
+                value={searchTerm}
+                onChange={handleSearchChange}
                 className="bg-[#1C1650] text-white placeholder-gray-400 w-full pl-10 pr-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#41D7FC]"
               />
             </div>
             <button
-              onClick={abrirModalAgregar}
+              onClick={openAddModal}
               className="flex items-center justify-center space-x-2 bg-[#1C1650] hover:bg-[#41D7FC] hover:text-[#0E0B30] text-[#41D7FC] py-2 px-4 rounded-lg transition-colors"
+              disabled={loading}
             >
               <PlusCircle size={18} />
               <span>Agregar</span>
             </button>
           </div>
           
+          {/* Mensaje de error */}
+          {error && (
+            <div className="bg-red-600 text-white p-4 rounded-lg mb-6 flex items-center">
+              <AlertCircle size={20} className="mr-2" />
+              <span>{error}</span>
+            </div>
+          )}
+          
+          {/* Estado de carga */}
+          {loading && !error && (
+            <div className="bg-[#1C1650] p-4 rounded-lg mb-6 flex items-center justify-center">
+              <RefreshCw size={24} className="text-[#41D7FC] animate-spin mr-2" />
+              <span className="text-white">Cargando...</span>
+            </div>
+          )}
+          
           {/* Lista de marcas con scrollbar personalizado */}
           <div className="bg-[#10083A] rounded-xl shadow-lg overflow-hidden">
             <div className="max-h-[calc(100vh-300px)] overflow-y-auto custom-scrollbar">
-              {marcasFiltradas().map((marca) => (
-                <div 
-                  key={marca.id} 
-                  className="flex items-center justify-between p-4 border-b border-[#1C1650] hover:bg-[#1C1650] transition-colors"
-                >
-                  <span className="text-white">{marca.nombre}</span>
-                  <div className="flex items-center space-x-3">
-                    <button
-                      onClick={() => abrirModalEditar(marca)}
-                      className="text-[#41D7FC] hover:text-white transition-colors"
-                      aria-label={`Editar ${marca.nombre}`}
-                    >
-                      <Edit2 size={18} />
-                    </button>
-                    <button
-                      onClick={() => abrirModalEliminar(marca)}
-                      className="text-[#41D7FC] hover:text-red-500 transition-colors"
-                      aria-label={`Eliminar ${marca.nombre}`}
-                    >
-                      <Trash2 size={18} />
-                    </button>
-                  </div>
+              {filteredBrands.length === 0 ? (
+                <div className="flex flex-col items-center justify-center p-8 text-gray-400">
+                  <Flag size={48} className="mb-4 opacity-50" />
+                  <p className="text-center">
+                    {loading ? 'Cargando marcas...' : 'No se encontraron marcas'}
+                  </p>
                 </div>
-              ))}
+              ) : (
+                filteredBrands.map((brand) => (
+                  <div 
+                    key={brand._id} 
+                    className="flex items-center justify-between p-4 border-b border-[#1C1650] hover:bg-[#1C1650] transition-colors"
+                  >
+                    <span className="text-white">{brand.brandName}</span>
+                    <div className="flex items-center space-x-3">
+                      <button
+                        onClick={() => openEditModal(brand)}
+                        className="text-[#41D7FC] hover:text-white transition-colors"
+                        aria-label={`Editar ${brand.brandName}`}
+                        disabled={loading}
+                      >
+                        <Edit2 size={18} />
+                      </button>
+                      <button
+                        onClick={() => openDeleteModal(brand)}
+                        className="text-[#41D7FC] hover:text-red-500 transition-colors"
+                        aria-label={`Eliminar ${brand.brandName}`}
+                        disabled={loading}
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
       </div>
 
+      {/* Notificación */}
+      <AnimatePresence>
+        {notification.show && (
+          <div 
+            className={`fixed bottom-4 right-4 z-50 rounded-lg shadow-lg p-4 flex items-center ${notification.type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white`}
+          >
+            {notification.type === 'success' ? (
+              <CheckCircle size={20} className="mr-2" />
+            ) : (
+              <AlertCircle size={20} className="mr-2" />
+            )}
+            <span>{notification.message}</span>
+          </div>
+        )}
+      </AnimatePresence>
+
       {/* Modal para agregar marca */}
-      {mostrarModalAgregar && (
+      {isAddModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-[#10083A] rounded-xl shadow-lg w-full max-w-md p-6">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold text-white">Agregar Marca</h2>
               <button
-                onClick={cerrarModales}
+                onClick={closeAllModals}
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Cerrar modal"
               >
@@ -281,28 +298,29 @@ const Brands = () => {
             <input
               type="text"
               placeholder="Nombre de la marca"
-              value={nombreMarca}
-              onChange={(e) => setNombreMarca(e.target.value)}
+              value={brandName}
+              onChange={handleBrandNameChange}
               className="bg-[#1C1650] text-white w-full p-3 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#41D7FC]"
             />
             <button
-              onClick={agregarMarca}
+              onClick={handleCreateBrand}
               className="w-full bg-[#41D7FC] hover:bg-[#8252F7] text-[#100537] font-bold py-2 px-4 rounded-lg transition-colors"
+              disabled={loading}
             >
-              Agregar
+              {loading ? 'Procesando...' : 'Agregar'}
             </button>
           </div>
         </div>
       )}
 
       {/* Modal para editar marca */}
-      {mostrarModalEditar && (
+      {isEditModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-[#10083A] rounded-xl shadow-lg w-full max-w-md p-6">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold text-white">Editar Marca</h2>
               <button
-                onClick={cerrarModales}
+                onClick={closeAllModals}
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Cerrar modal"
               >
@@ -312,28 +330,29 @@ const Brands = () => {
             <input
               type="text"
               placeholder="Nombre de la marca"
-              value={nombreMarca}
-              onChange={(e) => setNombreMarca(e.target.value)}
+              value={brandName}
+              onChange={handleBrandNameChange}
               className="bg-[#1C1650] text-white w-full p-3 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-[#41D7FC]"
             />
             <button
-              onClick={actualizarMarca}
+              onClick={handleUpdateBrand}
               className="w-full bg-[#41D7FC] hover:bg-[#8252F7] text-[#100537] font-bold py-2 px-4 rounded-lg transition-colors"
+              disabled={loading}
             >
-              Actualizar
+              {loading ? 'Procesando...' : 'Actualizar'}
             </button>
           </div>
         </div>
       )}
 
       {/* Modal de confirmación para eliminar */}
-      {mostrarModalEliminar && (
+      {isDeleteModalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-[#10083A] rounded-xl shadow-lg w-full max-w-md p-6">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold text-white">Eliminar Marca</h2>
               <button
-                onClick={cerrarModales}
+                onClick={closeAllModals}
                 className="text-gray-400 hover:text-white transition-colors"
                 aria-label="Cerrar modal"
               >
@@ -341,20 +360,22 @@ const Brands = () => {
               </button>
             </div>
             <p className="text-white mb-6">
-              ¿Está seguro que desea eliminar la marca "{marcaActual?.nombre}"?
+              ¿Está seguro que desea eliminar la marca "{currentBrand?.brandName}"?
             </p>
             <div className="flex space-x-4">
               <button
-                onClick={cerrarModales}
+                onClick={closeAllModals}
                 className="flex-1 bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition-colors"
+                disabled={loading}
               >
                 Cancelar
               </button>
               <button
-                onClick={eliminarMarca}
+                onClick={handleDeleteBrand}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition-colors"
+                disabled={loading}
               >
-                Eliminar
+                {loading ? 'Procesando...' : 'Eliminar'}
               </button>
             </div>
           </div>

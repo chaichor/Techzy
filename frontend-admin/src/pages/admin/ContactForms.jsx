@@ -1,95 +1,88 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, ClipboardList } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ClipboardList, RefreshCw, Trash2, AlertCircle, Mail } from 'lucide-react';
 import TechzyLogo from '../../assets/techzy.svg';
-import PerfilSvg from '../../assets/perfil.svg';
+import { AnimatePresence } from 'framer-motion';
+
+// Importar los custom hooks
+import { useContactForms, usePagination } from '../../hooks/contactForms';
 
 /**
  * ContactForms Component
  * 
  * Muestra una lista de formularios de contacto enviados por los usuarios.
- * Incluye funcionalidad de paginación y visualización de mensajes.
+ * Incluye funcionalidad de paginación, visualización de mensajes y eliminación.
  * 
  * Este componente permite a los administradores revisar y gestionar
  * los mensajes recibidos a través del formulario de contacto del sitio web.
- * Muestra información del remitente, calificación y contenido del mensaje.
+ * Muestra información del remitente y contenido del mensaje con datos reales del backend.
  */
 const ContactForms = () => {
-  // Estado para controlar la página actual de paginación
-  const [currentPage, setCurrentPage] = useState(1);
+  // Usar custom hooks para gestionar los formularios de contacto
+  const { 
+    contactForms, 
+    loading, 
+    error, 
+    deleteContactForm, 
+    reloadContactForms 
+  } = useContactForms();
+  
+  // Usar custom hook para la paginación
+  const { 
+    currentPage, 
+    totalPages, 
+    currentItems, 
+    goToPreviousPage, 
+    goToNextPage 
+  } = usePagination(contactForms);
+  
+  // Estado para notificación
+  const [notification, setNotification] = useState({
+    show: false,
+    message: '',
+    type: 'success' // 'success' o 'error'
+  });
   
   /**
-   * Datos de ejemplo para los formularios de contacto
-   * En una implementación real, estos datos vendrían de una API
-   * 
-   * @type {Array<{id: number, nombre: string, estrellas: number, mensaje: string}>}
+   * Muestra una notificación
+   * @param {string} message - Mensaje a mostrar
+   * @param {string} type - Tipo de notificación ('success' o 'error')
    */
-  const formularios = [
-    { id: 1, nombre: 'Carlos', estrellas: 5, mensaje: 'Hola xikos fijense que no me funciona el teclado' },
-    { id: 2, nombre: 'Ethan', estrellas: 5, mensaje: 'Como estamos chavales' },
-    { id: 3, nombre: 'Victor', estrellas: 5, mensaje: 'Pagina de $%m#*' },
-    { id: 4, nombre: 'Victor', estrellas: 5, mensaje: 'Pagina de $%m#*' },
-    { id: 5, nombre: 'Victor', estrellas: 5, mensaje: 'Pagina de $%m#*' },
-    { id: 6, nombre: 'Victor', estrellas: 5, mensaje: 'Pagina de $%m#*' },
-    { id: 7, nombre: 'Victor', estrellas: 5, mensaje: 'Pagina de $%m#*' },
-    { id: 8, nombre: 'Maria', estrellas: 4, mensaje: 'Excelente servicio, pero necesito asistencia' },
-    { id: 9, nombre: 'Juan', estrellas: 3, mensaje: 'El producto llegó con retraso' },
-    { id: 10, nombre: 'Ana', estrellas: 5, mensaje: 'Muy contenta con mi compra' },
-    { id: 11, nombre: 'Pedro', estrellas: 4, mensaje: 'Buena calidad pero el envío tardó más de lo esperado' },
-    { id: 12, nombre: 'Laura', estrellas: 5, mensaje: 'Los switches son increíbles, muchas gracias' },
-    { id: 13, nombre: 'Diego', estrellas: 2, mensaje: 'Tengo problemas con mi pedido' },
-    { id: 14, nombre: 'Sofia', estrellas: 5, mensaje: 'Increíble experiencia de compra' },
-    { id: 15, nombre: 'Alejandro', estrellas: 4, mensaje: 'Buena atención al cliente' },
-    { id: 16, nombre: 'Valentina', estrellas: 5, mensaje: 'Los keycaps son hermosos' },
-    { id: 17, nombre: 'Mateo', estrellas: 3, mensaje: 'Necesito ayuda con la instalación' },
-    { id: 18, nombre: 'Isabella', estrellas: 5, mensaje: 'Excelente calidad' },
-    { id: 19, nombre: 'Santiago', estrellas: 4, mensaje: 'Buen producto, cumple con lo prometido' },
-    { id: 20, nombre: 'Camila', estrellas: 5, mensaje: 'Me encanta mi nuevo teclado mecánico' }
-  ];
-
-  // Número de elementos por página
-  const itemsPerPage = 7;
+  const showNotification = (message, type = 'success') => {
+    setNotification({
+      show: true,
+      message,
+      type
+    });
+    
+    // Auto-ocultar después de 3 segundos
+    setTimeout(() => {
+      setNotification(prev => ({ ...prev, show: false }));
+    }, 3000);
+  };
   
-  // Calcular el total de páginas
-  const totalPages = Math.ceil(formularios.length / itemsPerPage);
-  
-  // Obtener elementos para la página actual
-  const currentItems = formularios.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-
   /**
-   * Maneja la navegación a la página anterior
-   * @returns {void}
+   * Maneja la eliminación de un formulario de contacto
+   * @param {string} id - ID del formulario a eliminar
+   * @param {string} email - Email del remitente para la confirmación
    */
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+  const handleDeleteForm = async (id, email) => {
+    if (window.confirm(`¿Está seguro que desea eliminar el formulario de ${email}?`)) {
+      try {
+        await deleteContactForm(id);
+        showNotification('Formulario eliminado exitosamente');
+      } catch (error) {
+        showNotification('Error al eliminar el formulario: ' + (error.message || 'Error desconocido'), 'error');
+      }
     }
   };
-
+  
   /**
-   * Maneja la navegación a la página siguiente
-   * @returns {void}
+   * Maneja la recarga de los formularios de contacto
    */
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  /**
-   * Renderiza estrellas basadas en la calificación
-   * @param {number} count - Número de estrellas a mostrar
-   * @returns {JSX.Element} - Estrellas renderizadas
-   */
-  const renderStars = (count) => {
-    return Array(count)
-      .fill(0)
-      .map((_, index) => (
-        <span key={index} className="text-yellow-400">★</span>
-      ));
+  const handleRefresh = () => {
+    reloadContactForms();
+    showNotification('Datos actualizados');
   };
 
   return (
@@ -126,67 +119,128 @@ const ContactForms = () => {
       {/* Contenido principal */}
       <div className="flex-grow flex flex-col justify-center items-center p-6 md:p-10">
         <div className="bg-[#10083A] rounded-2xl shadow-lg w-full max-w-4xl overflow-hidden">
-          {/* Título de la sección */}
-          <div className="flex items-center space-x-4 p-6 border-b border-[#1C1650]">
-            <h1 className="text-2xl font-bold text-white">Formularios de parte de los clientes</h1>
-            <ClipboardList size={32} className="text-[#41D7FC]" />
+          {/* Título de la sección y botón de recarga */}
+          <div className="flex justify-between items-center p-6 border-b border-[#1C1650]">
+            <div className="flex items-center space-x-4">
+              <h1 className="text-2xl font-bold text-white">Formularios de contacto</h1>
+              <ClipboardList size={32} className="text-[#41D7FC]" />
+            </div>
+            <button
+              onClick={handleRefresh}
+              className="p-2 rounded-full bg-[#1C1650] text-[#41D7FC] hover:bg-[#41D7FC] hover:text-[#1C1650] transition-colors"
+              aria-label="Refrescar datos"
+            >
+              <RefreshCw size={20} className={loading ? 'animate-spin' : ''} />
+            </button>
           </div>
           
           {/* Lista de formularios */}
           <div className="p-6">
-            <h2 className="text-xl text-white mb-6">Lista de formularios</h2>
+            {/* Contador de formularios */}
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl text-white">Lista de formularios</h2>
+              <div className="text-[#41D7FC] text-sm">
+                Total: {contactForms.length}
+              </div>
+            </div>
+            
+            {/* Estado de carga */}
+            {loading && (
+              <div className="bg-[#1C1650] p-4 rounded-lg mb-6 flex items-center justify-center">
+                <RefreshCw size={24} className="text-[#41D7FC] animate-spin mr-2" />
+                <span className="text-white">Cargando...</span>
+              </div>
+            )}
+            
+            {/* Mensaje de error */}
+            {error && (
+              <div className="bg-red-600 text-white p-4 rounded-lg mb-6 flex items-center">
+                <AlertCircle size={20} className="mr-2" />
+                <span>{error}</span>
+              </div>
+            )}
             
             {/* Mensajes con scrollbar personalizado */}
             <div className="space-y-4 max-h-[calc(100vh-340px)] overflow-y-auto custom-scrollbar pr-2">
-              {currentItems.map((formulario) => (
-                <div 
-                  key={formulario.id} 
-                  className="flex items-center space-x-4 p-3 rounded-lg hover:bg-[#1C1650] transition-colors"
-                >
-                  {/* Información del remitente y su imagen - Con ancho fijo */}
-                  <div className="flex items-center space-x-3 w-64 min-w-64 flex-shrink-0">
-                    {/* Nombre y estrellas - Con ancho fijo */}
-                    <div className="flex flex-col w-40 min-w-40">
-                      <p className="text-sm text-white font-medium truncate">{formulario.nombre}</p>
-                      <div className="text-xs">
-                        {renderStars(formulario.estrellas)}
+              {!loading && currentItems.length === 0 ? (
+                <div className="flex flex-col items-center justify-center p-8 text-gray-400">
+                  <Mail size={48} className="mb-4 opacity-50" />
+                  <p className="text-center">
+                    No hay formularios de contacto disponibles
+                  </p>
+                </div>
+              ) : (
+                currentItems.map((form) => (
+                  <div 
+                    key={form._id} 
+                    className="flex items-center justify-between p-4 border-b border-[#1C1650] hover:bg-[#1C1650] transition-colors"
+                  >
+                    {/* Información del remitente */}
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-2 mb-2">
+                        <Mail size={16} className="text-[#41D7FC]" />
+                        <p className="text-white font-medium">{form.email}</p>
                       </div>
+                      <p className="text-gray-300 text-sm">{new Date(form.createdAt).toLocaleString('es-ES')}</p>
                     </div>
                     
-                    {/* Imagen de perfil - Tamaño fijo */}
-                    <img src={PerfilSvg} alt="Perfil" className="w-10 h-10 rounded-full flex-shrink-0" />
+                    {/* Mensaje */}
+                    <div className="flex-1 mx-4">
+                      <p className="text-[#41D7FC] line-clamp-2">{form.description}</p>
+                    </div>
+                    
+                    {/* Acciones */}
+                    <div className="flex items-center">
+                      <button
+                        onClick={() => handleDeleteForm(form._id, form.email)}
+                        className="text-[#41D7FC] hover:text-red-500 transition-colors p-2"
+                        aria-label={`Eliminar formulario de ${form.email}`}
+                        disabled={loading}
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
                   </div>
-                  
-                  {/* Mensaje - Con alineación vertical centrada */}
-                  <div className="flex-1 flex items-center pl-4">
-                    <p className="text-[#41D7FC]">{formulario.mensaje}</p>
-                  </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
             
             {/* Controles de paginación */}
-            <div className="flex justify-center mt-8 space-x-6">
-              <button 
-                onClick={handlePrevPage}
-                disabled={currentPage === 1}
-                className="p-2 rounded-full bg-[#1C1650] text-[#41D7FC] disabled:opacity-50"
-                aria-label="Página anterior"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-                className="p-2 rounded-full bg-[#1C1650] text-[#41D7FC] disabled:opacity-50"
-                aria-label="Página siguiente"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
+            {contactForms.length > 0 && (
+              <div className="flex justify-center mt-8 space-x-6">
+                <button 
+                  onClick={goToPreviousPage}
+                  disabled={currentPage === 1 || loading}
+                  className="p-2 rounded-full bg-[#1C1650] text-[#41D7FC] disabled:opacity-50 hover:bg-[#41D7FC] hover:text-[#1C1650] transition-colors"
+                  aria-label="Página anterior"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button 
+                  onClick={goToNextPage}
+                  disabled={currentPage === totalPages || loading}
+                  className="p-2 rounded-full bg-[#1C1650] text-[#41D7FC] disabled:opacity-50 hover:bg-[#41D7FC] hover:text-[#1C1650] transition-colors"
+                  aria-label="Página siguiente"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
+      
+      {/* Notificación */}
+      <AnimatePresence>
+        {notification.show && (
+          <div 
+            className={`fixed bottom-4 right-4 z-50 rounded-lg shadow-lg p-4 flex items-center ${notification.type === 'success' ? 'bg-green-600' : 'bg-red-600'} text-white`}
+          >
+            <AlertCircle size={20} className="mr-2" />
+            <span>{notification.message}</span>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

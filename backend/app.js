@@ -1,5 +1,6 @@
 // Importo todo lo de la libreria express
 import express from "express";
+import cors from "cors";
 import usersRoutes from "./src/routes/users.js";
 import brandRoutes from "./src/routes/brand.js";
 import contactFormRoutes from "./src/routes/contactForm.js";
@@ -18,6 +19,13 @@ const app = express();
 
 // Uso de middlewares que acepette datos Json
 app.use(express.json());
+
+// Configuración de CORS para permitir solicitudes desde el frontend
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 // Definir la ruta
 app.use("/api/users", usersRoutes);
