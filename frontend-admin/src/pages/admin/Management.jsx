@@ -50,19 +50,29 @@ const Management = () => {
   return (
     <div className="flex flex-col min-h-screen bg-[#0E0B30] text-white">
       {/* Barra de navegación */}
-      <nav className="bg-[#1C1650] p-4 shadow-md">
-        <div className="container mx-auto flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <img src={TechzyLogo} alt="Techzy Logo" className="h-8 w-8" />
-            <span className="text-[#41D7FC] font-bold text-xl">Techzy Admin</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <Link to="/admin/dashboard" className="bg-[#41D7FC] hover:bg-[#8252F7] text-[#100537] font-bold py-2 px-4 rounded transition duration-300">
-              Dashboard
-            </Link>
-          </div>
-        </div>
-      </nav>
+     <nav className="bg-[#1C1650] p-4 shadow-md">
+  <div className="container mx-auto flex justify-between items-center">
+    <div className="flex items-center space-x-2">
+      <img src={TechzyLogo} alt="Techzy Logo" className="h-8 w-8" />
+      <span className="text-[#41D7FC] font-bold text-xl">Techzy Admin</span>
+    </div>
+    <div className="flex items-center space-x-4">
+      <Link
+        to="/admin/dashboard"
+        className="bg-[#41D7FC] hover:bg-[#8252F7] text-[#100537] font-bold py-2 px-4 rounded transition duration-300"
+      >
+        Dashboard
+      </Link>
+      <Link
+        to="/admin/profile"
+        className="bg-[#41D7FC] hover:bg-[#8252F7] text-[#100537] font-bold py-2 px-4 rounded transition duration-300"
+      >
+        Perfil
+      </Link>
+    </div>
+  </div>
+</nav>
+
 
       {/* Contenido principal */}
       <div className="flex flex-col justify-center items-center min-h-[calc(100vh-80px)] p-8 md:p-10 container mx-auto">

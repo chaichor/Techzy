@@ -9,6 +9,7 @@ import Products from './pages/admin/Products'
 import ProtectedRoute from './components/protected/ProtectedRoute'
 import Rating from './pages/admin/Rating'
 import RecoveryPassword from './pages/admin/RecoveryPassword'
+import ProfileAdmin from './pages/admin/ProfileAdmin'
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/admin/rating" element={<ProtectedRoute><Rating></Rating></ProtectedRoute>}/>
           <Route path="/admin/RecoveryPassword" element={<RecoveryPassword />} />
+          <Route path="/admin/profile" element={<ProtectedRoute><ProfileAdmin /></ProtectedRoute>} />
+          {/* Rutas de administración */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
