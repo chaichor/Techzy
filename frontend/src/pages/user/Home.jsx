@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderHome from '../../components/Home/headerHome';
-import InfoHome from '../../components/Home/infoHome';
+import InfoHome from '../../components/Home/InfoHome';
 import ProductCarousel from '../../components/productCarousel';
 import KeyboardCarousel from '../../components/keyboardCarousel';
 import KeycapsCarousel from '../../components/keycapsCarousel';
