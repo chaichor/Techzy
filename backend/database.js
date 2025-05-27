@@ -19,5 +19,4 @@ connection.on("disconnected", () => {
 });
 
 connection.on("error", (error) => {
-    cibsike.log("Error found" + error);
 });
