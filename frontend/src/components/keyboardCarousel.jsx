@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ProductCard from './ProductCard';
-import './ProductCarousel.css';
+import './productCarousel.css';
 
 const products = [
   { imageSrc: '/p1.png', productName: "EPOMAKER x AULA F75", price: 75, isFavorite: false },
