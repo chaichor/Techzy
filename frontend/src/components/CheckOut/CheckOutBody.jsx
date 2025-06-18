@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const CheckoutBody = () => {
     const [form, setForm] = useState({
@@ -21,8 +22,54 @@ const CheckoutBody = () => {
     const shipping = 2;
     const total = subtotal + shipping;
 
+    const handlePurchase = (e) => {
+        e.preventDefault();
 
+        // Validación básica del formulario
+        if (!form.address || !form.department || !form.cardNumber || !form.expiry || !form.cvv || !form.cardHolder) {
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor completa todos los campos requeridos',
+                icon: 'error',
+                confirmButtonText: 'Entendido',
+                background: '#1E1E1E', // Manteniendo tu fondo oscuro original
+                color: 'white',
+                iconColor: '#3B82F6', // Color azel estándar (puedes cambiarlo por cualquier código HEX)
+                customClass: {
+                    popup: 'rounded-xl! border border-gray-700',
+                    icon: '!border-blue-500', // Borde azul para el icono
+                    confirmButton: 'max-w-none! w-full! px-8! py-3! bg-primary! text-white! font-semibold! border-1! border-subprimary! rounded-full! shadow-xl! hover:bg-subprimary! hover:text-primary! transition-all! duration-300! hover:shadow-[0px_4px_20px_#8252F7]!'
+                }
+            });
+            return;
+        }
 
+        // Simulación de procesamiento de pago
+        setTimeout(() => {
+            Swal.fire({
+                title: '¡Compra realizada!',
+                text: 'Tu transacción se completó con éxito',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                background: '#1E1E1E',
+                color: 'white',
+                customClass: {
+                    popup: 'rounded-xl border border-gray-700',
+                    confirmButton: 'bg-subprimary hover:bg-purple-700 text-primary font-semibold py-2 px-4 rounded-full',
+                    title: 'text-xl font-mono',
+                    htmlContainer: 'text-lg font-mono'
+                }
+            });
+        }, 1500);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setForm(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
 
     return (
         <div className="min-h-screen bg-primary text-white font-mono p-6 flex flex-col md:flex-row gap-8">
@@ -30,18 +77,30 @@ const CheckoutBody = () => {
                 <div className="bg-secondary p-6 rounded-xl">
                     <h2 className="text-lg font-bold border-b border-white pb-2 mb-4">Entrega</h2>
                     <div className="relative z-0 w-full group p-2">
-                        <input type="text" name="address" id="address" className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer" placeholder="Dirección" />
+                        <input
+                            type="text"
+                            name="address"
+                            id="address"
+                            value={form.address}
+                            onChange={handleInputChange}
+                            className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer"
+                            placeholder="Dirección"
+                            required
+                        />
                     </div>
                     <div className="relative z-0 w-full group p-2">
-                    <select
-                        name="department"
-                        className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer"
-                    >
-                        <option value="">Departamento</option>
-                        <option value="San Salvador">San Salvador</option>
-                        <option value="La Libertad">La Libertad</option>
-                        <option value="Santa Ana">Santa Ana</option>
-                    </select>
+                        <select
+                            name="department"
+                            value={form.department}
+                            onChange={handleInputChange}
+                            className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer"
+                            required
+                        >
+                            <option value="">Departamento</option>
+                            <option value="San Salvador">San Salvador</option>
+                            <option value="La Libertad">La Libertad</option>
+                            <option value="Santa Ana">Santa Ana</option>
+                        </select>
                     </div>
                     <p className="mt-1 text-base text-subprimary pl-3 font-semibold">
                         Entregas limitadas a El Salvador, porfavor tener en cuenta antes de llenar el formulario.
@@ -53,38 +112,50 @@ const CheckoutBody = () => {
                         Pago <span className="text-[#41D7FC] ml-4">TARJETA</span>
                     </h2>
                     <div className="relative z-0 w-full group p-2">
-                    <input
-                        type="text"
-                        name="cardNumber"
-                        className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer" 
-                        placeholder="Número de tarjeta"
-                    />
+                        <input
+                            type="text"
+                            name="cardNumber"
+                            value={form.cardNumber}
+                            onChange={handleInputChange}
+                            className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer"
+                            placeholder="Número de tarjeta"
+                            required
+                        />
                     </div>
                     <div className="flex">
-                    <div className="relative z-0 w-full group p-2">
-                        <input
-                            type="text"
-                            name="expiry"
-                            className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer" 
-                            placeholder="Fecha de nacimiento"
-                        />
+                        <div className="relative z-0 w-full group p-2">
+                            <input
+                                type="text"
+                                name="expiry"
+                                value={form.expiry}
+                                onChange={handleInputChange}
+                                className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer"
+                                placeholder="Fecha de nacimiento"
+                                required
+                            />
+                        </div>
+                        <div className="relative z-0 w-full group p-2">
+                            <input
+                                type="text"
+                                name="cvv"
+                                value={form.cvv}
+                                onChange={handleInputChange}
+                                className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer"
+                                placeholder="(CVV)"
+                                required
+                            />
+                        </div>
                     </div>
                     <div className="relative z-0 w-full group p-2">
                         <input
                             type="text"
-                            name="cvv"
-                            className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer" 
-                            placeholder="(CVV)"
-                        />
-                    </div>
-                    </div>
-                    <div className="relative z-0 w-full group p-2">
-                    <input
-                        type="text"
-                        name="cardHolder"
-                            className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer" 
+                            name="cardHolder"
+                            value={form.cardHolder}
+                            onChange={handleInputChange}
+                            className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer"
                             placeholder="Titular de la tarjeta"
-                    />
+                            required
+                        />
                     </div>
                     <p className="mt-1 text-base text-subprimary pl-3 font-semibold">
                         Todas las transacciones son seguras y encriptadas.
@@ -92,6 +163,7 @@ const CheckoutBody = () => {
                 </div>
 
                 <button
+                    onClick={handlePurchase}
                     className="max-w-none w-full px-8 py-3 bg-primary text-white font-semibold border-1 border-subprimary rounded-full
                         shadow-xl hover:bg-subprimary hover:text-primary transition-all duration-300 
                         hover:shadow-[0px_4px_20px_#8252F7]"
@@ -119,8 +191,10 @@ const CheckoutBody = () => {
                     <input
                         type="text"
                         name="coupon"
-                            className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer" 
-                            placeholder="Código de cupón"
+                        value={form.coupon}
+                        onChange={handleInputChange}
+                        className="bg-primary pl-4 rounded-lg block py-2.5 px-0 w-full text-base border-0 border-b-2 appearance-none text-white border-subprimary hover:border-subsecondary transition-all duration-350 focus:outline-none focus:ring-0 placeholder:text-subprimary hover:placeholder:text-subsecondary focus:border-subsecondary peer"
+                        placeholder="Código de cupón"
                     />
                     <button className="max-w-none w-full px-8 py-2 bg-primary text-white font-semibold border-1 border-subprimary rounded-full
                         shadow-xl hover:bg-subprimary hover:text-primary transition-all duration-300 
